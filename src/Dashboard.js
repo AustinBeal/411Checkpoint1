@@ -48,8 +48,8 @@ const Dashboard = () => {
             }
         } else {
             if (onlineIndex  > -1) {
-                let newMsgList = errLogs.filter( item => item !== warningMessages.isOnline)
-                seterrLogs(newMsgList)
+                let errorLists = errLogs.filter( item => item !== warningMessages.isOnline)
+                seterrLogs(errorLists)
             }
         }
     },[isOnline])
@@ -64,8 +64,8 @@ const Dashboard = () => {
             }
         } else {
             if (qualityIndex > -1) {
-                let newMsgList = errLogs.filter( item => item !== warningMessages.soundQuality)
-                seterrLogs(newMsgList)
+                let errorLists = errLogs.filter( item => item !== warningMessages.soundQuality)
+                seterrLogs(errorLists)
             }
         }
     },[ soundQuality])
@@ -79,8 +79,8 @@ const Dashboard = () => {
             }
         } else {
             if (volumeIndex > -1) {
-                let newMsgList = errLogs.filter( item => item !== warningMessages.volLevel)
-                seterrLogs(newMsgList)
+                let errorLists = errLogs.filter( item => item !== warningMessages.volLevel)
+                seterrLogs(errorLists)
             }
         }
     },[volLevel])
@@ -103,62 +103,69 @@ const Dashboard = () => {
     return (
         <Container className= 'maincontainer' >
             <Container className={classes.box}>
-            <ul>
-                {errLogs.map( (msg, index) => {
-                    return <li className='errormessage' key={index}>{msg}</li>
-                })}
-            </ul>
-                <Card className={classes.card}>
-                    <CardContent>
-                        <Typography variant='h5'>
-                            Online Mode
-                        </Typography>
-                        <Typography variant='body2'>
-                            Is this application connected to the internet?
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Switch checked={isOnline} onChange={handleSwitch} />
-                    </CardActions>
-                </Card>
-                <Card className={classes.card}>
-                    <CardContent>
-                        <Typography variant='h5' gutterBottom>
-                            Master Volume
-                        </Typography>
-                        <Typography variant='body2'>
-                            Overrides all other sound settings in this application
-                        </Typography>
-                    </CardContent>
-                            <CardActions>
-                                <Slider
-                                value={volLevel}
-                                valueLabelDisplay='auto'
-                                step={10}
-                                marks
-                                min={0}
-                                max={100}
-                                onChange={handleVolume}
-                                />
-                            </CardActions>
-                </Card>
-                <Card className={classes.card}>
-                    <CardContent>
-                        <Typography variant='h5' gutterBottom>
-                            Sound Quality
-                        </Typography>
-                        <Typography variant='body2'>
-                            Manually control the music quality in the event of poor connection
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Select onChange={handleQuality} value={soundQuality} fullWidth>
-                            <MenuItem value='2'>Normal</MenuItem>
-                            <MenuItem value='3'>High</MenuItem>
-                            <MenuItem value='1'>Low</MenuItem>
-                        </Select>
-                    </CardActions>
-                </Card>
+                        <ul>
+                            {errLogs.map( (msg, index) => {
+                                return <li className='errormessage' key={index}>{msg}</li>
+                            })}
+                        </ul>
+
+                    <Card className={classes.card}>
+                        <CardContent>
+                            <Typography variant='h5'>
+                                Online Mode
+                            </Typography>
+                            <Typography variant='body2'>
+                                Is this application connected to the internet?
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Switch checked={isOnline} onChange={handleSwitch} />
+                        </CardActions>
+                    </Card>
+
+
+                    <Card className={classes.card}>
+                        <CardContent>
+                            <Typography variant='h5'>
+                                Master Volume
+                            </Typography>
+                            <Typography variant='body2'>
+                                Overrides all other sound settings in this application
+                            </Typography>
+                        </CardContent>
+                                <CardActions>
+                                    <Slider
+                                    value={volLevel}
+                                    valueLabelDisplay='auto'
+                                    step={10}
+                                    marks
+                                    min={0}
+                                    max={100}
+                                    onChange={handleVolume}
+                                    />
+                                </CardActions>
+                    </Card>
+
+
+                    <Card className={classes.card}>
+                        <CardContent>
+                            <Typography variant='h5'>
+                                Sound Quality
+                            </Typography>
+                            <Typography variant='body2'>
+                                Manually control the music quality in the event of poor connection
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Select onChange={handleQuality} value={soundQuality} fullWidth>
+                                <MenuItem value='2'>Normal</MenuItem>
+                                <MenuItem value='3'>High</MenuItem>
+                                <MenuItem value='1'>Low</MenuItem>
+                            </Select>
+                        </CardActions>
+                    </Card>
+
+                    
             </Container>            
         </Container>
     )
