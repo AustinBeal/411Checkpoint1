@@ -1,0 +1,19 @@
+.Dashboard{
+ 
+  color: darkgray;
+  width: 75%;
+
+}
+p{
+  font-size: 12px;
+}
+ul{
+  width: 100vw;
+}
+
+.errormessage{
+  color: red;
+  font-size: 10px;
+  list-style: none;
+  width: 100vw;
+}
